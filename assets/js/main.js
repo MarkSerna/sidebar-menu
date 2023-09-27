@@ -1,0 +1,95 @@
+/*===== SHOW NAVBAR  =====*/ 
+const showNavbar = (toggleId, navId, bodyId, headerId) =>{
+    const toggle = document.getElementById(toggleId),
+    nav = document.getElementById(navId),
+    bodypd = document.getElementById(bodyId),
+    headerpd = document.getElementById(headerId)
+
+    // Validate that all variables exist
+    if(toggle && nav && bodypd && headerpd){
+        toggle.addEventListener('click', ()=>{
+            // show navbar
+            nav.classList.toggle('show')
+            // change icon
+            toggle.classList.toggle('bx-x')
+            // add padding to body
+            bodypd.classList.toggle('body-pd')
+            // add padding to header
+            headerpd.classList.toggle('body-pd')
+        })
+    }
+}
+
+showNavbar('header-toggle','nav-bar','body-pd','header')
+
+/*===== SUBMENU  =====*/ 
+
+function toggleSubMenu() {
+    var subMenu = document.getElementById("subMenu");
+    subMenu.style.display = (subMenu.style.display === "block") ? "none" : "block";
+}
+
+
+/*===== LINK ACTIVE  =====*/ 
+const linkColor = document.querySelectorAll('.nav__link')
+
+function colorLink(){
+    if(linkColor){
+        linkColor.forEach(l=> l.classList.remove('active'))
+        this.classList.add('active')
+    }
+}
+linkColor.forEach(l=> l.addEventListener('click', colorLink))
+
+//========== RELOJ ==========//
+
+let fechaElement = document.getElementById("fecha");
+    let diaElement = document.getElementById("dia");
+    let mesElement = document.getElementById("mes");
+    let anioElement = document.getElementById("anio");
+
+    let hoy = new Date();
+
+    // Cambiar números a letras en días y fechas
+    let diassemana = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
+    let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+
+    fechaElement.innerHTML = (hoy.getDate() < 10 ? "0" : "") + hoy.getDate();
+    diaElement.innerHTML = diassemana[hoy.getDay()];
+    mesElement.innerHTML = meses[hoy.getMonth()];
+    anioElement.innerHTML = hoy.getFullYear();
+
+
+
+//========== MODAL ==========//
+
+const buttons = document.querySelectorAll('.custom-btn');
+const modal = document.querySelector('.modal-container');
+const closeModal = document.querySelector('.close__btn');
+
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        modal.style.display = 'block';
+    });
+});
+
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', (e) => {
+    if (e.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+
+// Obtén una referencia a los elementos de inicio y habitaciones
+const inicioLink = document.querySelector('.nav__link.active');
+const habitacionesSection = document.querySelector('.Habitaciones');
+
+// Agrega un event listener al enlace de inicio
+inicioLink.addEventListener('click', () => {
+    // Alterna la visibilidad de la sección de habitaciones
+    habitacionesSection.classList.toggle('hidden');
+});
